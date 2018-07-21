@@ -26,11 +26,41 @@
 		type="video/mp4"></video>
 	<div class="login-wrap">
 		<div class="login-html">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
-				for="tab-1" class="tab">Sign Un</label>
+			<input id="tab-1" type="radio" name="tab" class="sign-in" ><label
+				for="tab-1" class="tab">Sign In</label> <input id="tab-2"
+				type="radio" name="tab" class="sign-up" checked><label for="tab-2"
+				class="tab">Sign Up</label>
 			<div class="login-form">
-
 				<div class="sign-in-htm">
+					<form:form action="${pageContext.request.contextPath}/login" modelAttribute="user" method="POST">
+
+						<div class="group">
+							<label for="user" class="label">Username</label>
+							<form:input id="user" path="nameCustomer" type="text"
+								class="input" />
+						</div>
+						<div class="group">
+							<label for="pass" class="label">Password</label>
+							<form:input id="pass" path="passCustomer" type="password"
+								class="input" data-type="password" />
+						</div>
+						<div class="group">
+							<input id="check" type="checkbox" class="check" checked>
+							<label for="check"><span class="icon"></span> Keep me
+								Signed in</label>
+						</div>
+						<div class="group">
+							<input type="submit" class="button" value="Sign In">
+						</div>
+						<div class="hr"></div>
+						<div class="foot-lnk">
+							<a href="#forgot">Forgot Password?</a>
+						</div>
+
+					</form:form>
+
+				</div>
+				<div class="sign-up-htm">
 					<form:form action="${pageContext.request.contextPath}/signup"
 						modelAttribute="user" method="POST">
 						<div class="group">

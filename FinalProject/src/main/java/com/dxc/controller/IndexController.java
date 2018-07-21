@@ -55,7 +55,7 @@ public class IndexController {
 
 		if (result.hasErrors()) {
 			
-			return "login";
+			return "signupError";
 		}
 
 		
