@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dxc.service.UserService;
 import com.dxc.model.User;
@@ -34,9 +36,13 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String loginUser(ModelMap modelMap, @ModelAttribute(value = "user") User user) {
+	public String loginUser(@RequestParam(value = "error", required = false) final String error,ModelMap modelMap, @ModelAttribute(value = "user") User user) {
 
-		User userCheck = userServer.getOneCus(user.getNameCustomer());
+		if (error != null) {
+			modelMap.addAttribute("message", "Login Failed!");
+		}
+		
+		/*User userCheck = userServer.getOneCus(user.getNameCustomer());
 		
 		if(userCheck!=null) {
 		
@@ -46,10 +52,15 @@ public class IndexController {
 		return "welcome";
 		}
 		
-		}
+		}*/
 		return "login";
 	}
 
+	@RequestMapping("/admin")
+	public String admin() {
+		return "admin";
+	}
+	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	public String registerUser(@Valid  @ModelAttribute(value = "user")  User user, BindingResult result, ModelMap modelMap ) {
 
@@ -64,4 +75,29 @@ public class IndexController {
 		return "login";
 	}
 
+	
+	@RequestMapping("/accessDenied")
+	public String accessDenied() {
+		return "accessDenied";
+	}
+	
+	
+	@RequestMapping("/user/loginuser")
+	public String user2() {
+		return "admin2";
+	}
+	
+	
+	@RequestMapping("/user/test")
+	public String user3() {
+		return "admin3";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(final Model model) {
+		model.addAttribute("message", "Logged out!");
+		User user = new User();
+		model.addAttribute("user", user);
+		return "login";
+	}
 }

@@ -11,5 +11,10 @@
 
 ${user.nameCustomer}
 
+<form action="<c:url value="/j_spring_security_logout" />" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="submit" value="Logout" />
+	</form>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,16 +32,20 @@
 				class="tab">Sign Up</label>
 			<div class="login-form">
 				<div class="sign-in-htm">
-					<form:form action="${pageContext.request.contextPath}/login" modelAttribute="user" method="POST">
+				<h2>${message}</h2>
+<c:if test="${param.error != null}" > 
+Error: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /> 
+</c:if>
+					<form action="<c:url value='j_spring_security_login' />"  method="POST">
 
 						<div class="group">
 							<label for="user" class="label">Username</label>
-							<form:input id="user" path="nameCustomer" type="text"
+							<input type='text' name='username'
 								class="input" />
 						</div>
 						<div class="group">
 							<label for="pass" class="label">Password</label>
-							<form:input id="pass" path="passCustomer" type="password"
+							<input type='password' name='password' 
 								class="input" data-type="password" />
 						</div>
 						<div class="group">
@@ -50,6 +54,7 @@
 								Signed in</label>
 						</div>
 						<div class="group">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="submit" class="button" value="Sign In">
 						</div>
 						<div class="hr"></div>
@@ -57,7 +62,7 @@
 							<a href="#forgot">Forgot Password?</a>
 						</div>
 
-					</form:form>
+					</form>
 
 				</div>
 				<div class="sign-up-htm">
