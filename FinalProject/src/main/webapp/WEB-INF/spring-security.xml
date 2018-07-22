@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 	<http  realm="Contacts Realm" use-expressions="true">
-  <intercept-url pattern="/dashboard" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+  <intercept-url pattern="/dashboard**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		<intercept-url pattern="/admin**" access="permitAll"/>
 		<intercept-url pattern="/group9/user**" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/group9/admin**" access="hasRole('ROLE_ADMIN')"/>

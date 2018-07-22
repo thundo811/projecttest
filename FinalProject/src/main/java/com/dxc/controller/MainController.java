@@ -1,5 +1,6 @@
 package com.dxc.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -8,9 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dxc.model.User;
+import com.dxc.service.InvoiceService;
 
 @Controller
 public class MainController {
+	
+	@Autowired
+	InvoiceService invoiceService;
 
 	@ExceptionHandler(ResourceNotFoundException.class)
     public String handleResourceNotFoundException() {
@@ -55,8 +60,17 @@ public class MainController {
 		
 		//Go to Dashboard
 		@RequestMapping("/dashboard")
-		public String admin() {
+		public String dashboard() {
 			return "DashBoard/index";
 		}
+		
+		
+		
+		//include _Menu
+				@RequestMapping("/dashboard/menu")
+				public String _Menu() {
+					return "DashBoard/_Menu";
+				}
+		
 	
 }

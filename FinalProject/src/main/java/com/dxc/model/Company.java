@@ -1,6 +1,7 @@
 package com.dxc.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -31,13 +32,8 @@ public class Company implements Serializable {
     @Column(name = "name_cpn")
     private String nameCpn;
     
-    
-    @Basic(optional = false)
-    @Column(name = "tax_code")
-    private int taxCode;
-    
-    
-    @ManyToOne
+
+	@ManyToOne
     @JoinColumn(name="service_cpn_id", 
 	insertable=false, updatable=false, 
 	nullable=false)
@@ -64,15 +60,7 @@ public class Company implements Serializable {
 	}
 
 
-	public int getTaxCode() {
-		return taxCode;
-	}
-
-
-	public void setTaxCode(int taxCode) {
-		this.taxCode = taxCode;
-	}
-
+	
 
 
 

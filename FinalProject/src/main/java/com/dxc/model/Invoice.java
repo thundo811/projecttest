@@ -39,9 +39,7 @@ public class Invoice implements Serializable {
 	@Column(name = "total")
 	private BigDecimal total;
 
-	@Basic(optional = false)
-	@Column(name = "vat")
-	private float vat;
+
 
 
 	@Basic(optional = false)
@@ -109,14 +107,6 @@ public class Invoice implements Serializable {
 	}
 
 
-	public float getVat() {
-		return vat;
-	}
-
-
-	public void setVat(float vat) {
-		this.vat = vat;
-	}
 
 
 	public BigDecimal getGrandTotal() {
@@ -131,13 +121,15 @@ public class Invoice implements Serializable {
 
 
 
-	public Service getCustome_inv() {
-		return custome_inv;
+
+
+	public User getCustomer_inv() {
+		return customer_inv;
 	}
 
 
-	public void setCustome_inv(Service custome_inv) {
-		this.custome_inv = custome_inv;
+	public void setCustomer_inv(User customer_inv) {
+		this.customer_inv = customer_inv;
 	}
 
 

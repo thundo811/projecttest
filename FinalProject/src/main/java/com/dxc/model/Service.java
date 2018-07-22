@@ -42,7 +42,19 @@ public class Service implements Serializable {
     @OneToMany(mappedBy="services_inv",cascade=CascadeType.ALL)
     private Set<Invoice> Invoice;
 
-	
+    @Basic(optional = false)
+    @Column(name = "vat")
+    private BigDecimal vat;
+    
+    
+    public BigDecimal getVat() {
+		return vat;
+	}
+
+
+	public void setVat(BigDecimal vat) {
+		this.vat = vat;
+	}
 
 	public Long getIdservice() {
 		return idservice;
