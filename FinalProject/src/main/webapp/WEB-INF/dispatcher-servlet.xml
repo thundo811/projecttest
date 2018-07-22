@@ -41,6 +41,7 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	<!-- error page -->
 
 
 	<!-- Database Configuration -->

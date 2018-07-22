@@ -2,10 +2,9 @@
 package com.dxc.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -53,15 +52,29 @@ public class User implements Serializable {
 	    @Column(name = "active")
 	    private boolean active;
 	    
-	    @Basic(optional = false)
+	    
+
+		@Basic(optional = false)
 	    @Column(name = "role")
 	    private boolean role;
 
-	    
+	    @OneToMany(mappedBy="customer_inv",cascade=CascadeType.ALL)
+	    private Set<Invoice> invoices;
 
 		public boolean isRole() {
 			return role;
 		}
+	    
+	    public static long getSerialVersionUID() {
+			return serialVersionUID;
+		}
+
+
+		public static void setSerialVersionUID(long serialVersionUID) {
+			User.serialVersionUID = serialVersionUID;
+		}
+
+
 
 
 		public void setRole(boolean role) {

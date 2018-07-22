@@ -30,6 +30,17 @@
   <url-pattern>*.css</url-pattern>
  </servlet-mapping>
 
+
+<error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/DashBoard/page_404.jsp</location>
+    </error-page>
+
+<error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/jsp/DashBoard/page_500.jsp</location>
+</error-page>
+
 <!-- Loads Spring Security configuration file -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
