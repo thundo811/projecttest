@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>Admin Page Said : You not permit</h1>
-	<h2>Welcome: ${pageContext.request.userPrincipal.name}</h2>
+	
 
 	
 

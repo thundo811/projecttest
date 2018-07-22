@@ -14,34 +14,36 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.dxc.model.User;
+import com.dxc.service.UserService;
+
 
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider{
 
-/*	@Autowired
-	private CustomUserService userService;*/
+	@Autowired
+	private UserService userService;
 	
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		 
 		 String username = authentication.getName();
          String password = (String) authentication.getCredentials();
-		
-	      List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 	         
-	    
+	      User userChecking = (User) userService.getOneCus(username);
 	      
-          if (username == null || !username.equalsIgnoreCase("admin")) {
+          if (username == null || !username.equalsIgnoreCase(userChecking.getNameCustomer())) {
               throw new BadCredentialsException("Username not found.");
           }
    
-          if (!password.equals("123")) {
+          if (!password.equals(userChecking.getPassCustomer())) {
               throw new BadCredentialsException("Wrong password.");
           }
     
-	      
-          authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
+          
+          List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+          authorities.add(new SimpleGrantedAuthority(userChecking.isRole()?"ROLE_ADMIN":"ROLE_USER"));
+          
 	 
 	        return new UsernamePasswordAuthenticationToken(username, password, authorities);
 	}

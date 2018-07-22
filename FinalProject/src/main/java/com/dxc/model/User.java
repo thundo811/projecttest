@@ -59,6 +59,16 @@ public class User implements Serializable {
 
 	    
 
+		public boolean isRole() {
+			return role;
+		}
+
+
+		public void setRole(boolean role) {
+			this.role = role;
+		}
+
+
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}

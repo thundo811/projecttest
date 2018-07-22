@@ -14,7 +14,7 @@
 
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
+	href="${pageContext.request.contextPath}/resources/style.css">
 
 
 </head>
@@ -23,7 +23,7 @@
 	<video muted="" autoplay="" loop="" id="hero-carousel__video">
 	<source
 		src="https://cdnapisec.kaltura.com/p/2258541/sp/0/playManifest/entryId/1_sfgl57lk/format/url/protocol/https/flavorParamId/487081/video.mp4"
-		type="video/mp4"> </video>
+		type="video/mp4"></video>
 	<div class="login-wrap">
 		<div class="login-html">
 			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
@@ -32,21 +32,21 @@
 				class="tab">Sign Up</label>
 			<div class="login-form">
 				<div class="sign-in-htm">
-				<h2>${message}</h2>
-<c:if test="${param.error != null}" > 
-Error: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /> 
-</c:if>
-					<form action="<c:url value='j_spring_security_login' />"  method="POST">
+					<h2>${message}</h2>
+					<c:if test="${param.error != null}"> 
+							Error: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+					</c:if>
+					<form action="<c:url value='j_spring_security_login' />"
+						method="POST">
 
 						<div class="group">
-							<label for="user" class="label">Username</label>
-							<input type='text' name='username'
-								class="input" />
+							<label for="user" class="label">Username</label> <input
+								type='text' name='username' class="input" required="true"/>
 						</div>
 						<div class="group">
-							<label for="pass" class="label">Password</label>
-							<input type='password' name='password' 
-								class="input" data-type="password" />
+							<label for="pass" class="label">Password</label> <input
+								type='password' name='password' class="input"
+								data-type="password" required="true"/>
 						</div>
 						<div class="group">
 							<input id="check" type="checkbox" class="check" checked>
@@ -54,8 +54,9 @@ Error: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
 								Signed in</label>
 						</div>
 						<div class="group">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							<input type="submit" class="button" value="Sign In">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <input type="submit" class="button"
+								value="Sign In">
 						</div>
 						<div class="hr"></div>
 						<div class="foot-lnk">
@@ -66,40 +67,40 @@ Error: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
 
 				</div>
 				<div class="sign-up-htm">
-					<form:form action="${pageContext.request.contextPath}/signup" modelAttribute="user" method="POST">
+					<form:form action="${pageContext.request.contextPath}/signup"
+						modelAttribute="user" method="POST">
 						<div class="group">
 							<label for="user" class="label">Username</label>
 							<form:input id="user" path="nameCustomer" type="text"
 								class="input" />
-								
-								<div class="has-error">
+
+							<div class="has-error">
 								<form:errors path="nameCustomer" class="help-inline" />
 							</div>
-								
+
 						</div>
 						<div class="group">
-							<label for="pass" class="label">Password</label> 
-	<form:input id="pass" path="passCustomer" type="password"
+							<label for="pass" class="label">Password</label>
+							<form:input id="pass" path="passCustomer" type="password"
 								class="input" data-type="password" />
-								
-								<div class="has-error">
+
+							<div class="has-error">
 								<form:errors path="passCustomer" class="help-inline" />
 							</div>
-								
+
 						</div>
 						<div class="group">
 							<label for="pass" class="label">Repeat Password</label> <input
 								id="pass" type="password" class="input" data-type="password">
 						</div>
 						<div class="group">
-							<label for="pass" class="label">Email Address</label> 
-							<form:input path="email"
-								id="pass" type="text" class="input"/>
-								
-								<div class="has-error">
+							<label for="pass" class="label">Email Address</label>
+							<form:input path="email" id="pass" type="text" class="input" />
+
+							<div class="has-error">
 								<form:errors path="email" class="help-inline" />
 							</div>
-								
+
 						</div>
 						<div class="group">
 							<input type="submit" name="button" class="button" value="Sign Up">
