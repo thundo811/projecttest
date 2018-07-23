@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dxc.model.User;
+import com.dxc.security.CustomAuthToken;
 import com.dxc.service.InvoiceService;
 
 @Controller
@@ -22,6 +23,7 @@ public class MainController {
         return "DashBoard/page_404";
     }
 
+	
 	
 	// Go page Login
 	@RequestMapping(value = "login", method = RequestMethod.GET)
@@ -37,6 +39,10 @@ public class MainController {
 		return "DashBoard/page_403";
 	}
 	
+	@RequestMapping("/dashboard/abc")
+	public String abc() {
+		return "DashBoard/form_validation";
+	}
 	
 	@RequestMapping("/group9/user")
 	public String user2() {
@@ -61,6 +67,7 @@ public class MainController {
 		//Go to Dashboard
 		@RequestMapping("/dashboard")
 		public String dashboard() {
+		/*	CustomAuthToken auth to use System.out.println(auth.getUserCus().getNameCustomer());*/
 			return "DashBoard/index";
 		}
 		

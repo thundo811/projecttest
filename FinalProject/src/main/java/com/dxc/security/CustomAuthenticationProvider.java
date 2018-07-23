@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,15 +27,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 
 	@Autowired
 	private UserService userService;
-	
+
+	 
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		 
 		 String username = authentication.getName();
          String password = (String) authentication.getCredentials();
-	         
+
 	      User userChecking = (User) userService.getOneCus(username);
-	      
-          if (username == null || !username.equalsIgnoreCase(userChecking.getNameCustomer())) {
+	   
+          if (username == null && userChecking!=null || !username.equalsIgnoreCase("admin")) {
               throw new BadCredentialsException("Username not found.");
           }
    
@@ -45,7 +49,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
           authorities.add(new SimpleGrantedAuthority(userChecking.isRole()?"ROLE_ADMIN":"ROLE_USER"));
           
 	 
-	        return new UsernamePasswordAuthenticationToken(username, password, authorities);
+	        return new CustomAuthToken(username, password, authorities,userChecking);
 	}
 
 	public boolean supports(Class<?> arg0) {

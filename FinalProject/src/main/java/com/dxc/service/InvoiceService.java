@@ -10,6 +10,6 @@ public interface InvoiceService {
 
 	public void saveOrUpdate(Invoice ivoice);
 	public ArrayList<Invoice> getAll();
-/*	public User getOneCus(String name);*/
-	
+	public Invoice getOneInv(Long id);
+	public void delete(Long id) ;
 }

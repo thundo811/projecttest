@@ -30,9 +30,9 @@
                       <li><a href="index.html">Dashboard</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Profile User <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form_validation.html">Form Validation</a></li>
+                      <li><a href="${pageContext.request.contextPath}/dashboard/showProfile">Update Inf </a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
@@ -114,7 +114,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul style="width:50px" class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="${pageContext.request.contextPath}/dashboard/showProfile"> Profile</a></li>
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
@@ -124,7 +124,7 @@
                     <li><a href="javascript:;">Help</a></li>
                     <li>
                     <form action="${pageContext.request.contextPath}/j_spring_security_logout" method="post">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 	
 		<input style="margin: 10px" class="btn btn-success" type="submit" value="Logout" />
 	</form>
@@ -201,4 +201,5 @@
             </nav>
           </div>
         </div>
+        
         <!-- /top navigation -->

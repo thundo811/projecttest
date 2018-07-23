@@ -51,7 +51,7 @@ public class LoginController {
 		
 	}
 
-	
+
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	public String registerUser(@Valid  @ModelAttribute(value = "user")  User user, BindingResult result, ModelMap modelMap ) {

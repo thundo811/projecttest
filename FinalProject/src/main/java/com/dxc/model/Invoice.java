@@ -35,11 +35,22 @@ public class Invoice implements Serializable {
 	@Column(name = "index_consumed")
 	private Float indexConsumed;
 
-	@Basic(optional = false)
-	@Column(name = "total")
-	private BigDecimal total;
+
+	@Length(max = 100)
+	@Column(name = "name_company")
+	private String nameCompany;
+	
+	
 
 
+	public String getNameCompany() {
+		return nameCompany;
+	}
+
+
+	public void setNameCompany(String nameCompany) {
+		this.nameCompany = nameCompany;
+	}
 
 
 	@Basic(optional = false)
@@ -97,14 +108,6 @@ public class Invoice implements Serializable {
 	}
 
 
-	public BigDecimal getTotal() {
-		return total;
-	}
-
-
-	public void setTotal(BigDecimal total) {
-		this.total = total;
-	}
 
 
 

@@ -1,15 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>DataTables | Gentelella</title>
+<title>Manager Bill </title>
 
 <!-- Bootstrap -->
 <link
@@ -65,8 +67,15 @@
 <link
 	href="${pageContext.request.contextPath}/resources/build/css/custom.min.css"
 	rel="stylesheet">
-</head>
+	
 
+    <link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+	
+	  
+	
+</head>
+                   
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
@@ -165,10 +174,9 @@
       <label for="sel1">Select list (select one):</label>
       <select class="form-control" id="sel1">
       	<c:forEach var="m" items="${servicelist}">
-													<a href="/${m.nameService} ">	<option>
-															
+														<option value="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/${m.nameService}">
 														${m.nameService}	
-														 </option></a>
+														 </option>
 														</c:forEach>
 
       </select>
@@ -179,58 +187,118 @@
 											
 											<!-- see the button attributes changes  -->
 											<div id="myModal" class="modal fade" role="dialog">
-												<div class="modal-dialog">
-													<!-- Modal content-->
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal">&times;</button>
-															<h4 class="modal-title">Modal Header</h4>
-														</div>
-														<div class="modal-body">
-														${nameServices}
-															<!-- <div
-																style="text-transform: uppercase; font-size: 20px; text-align: center"
-																class="showSevrice"></div> -->
-														</div>
-														
-														
-														
-														<div class="modal-body" style="padding: 40px 50px;">
-														 <form role="form">
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+											<!-- sidebar form Invoice -->
+			<div class="modal-dialog">
+	<!-- Modal content-->
+	<div class="modal-content" style="width:150%">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		</div>
+		
+
+
+
+		<div class="modal-body"  style="padding: 40px 50px;">
+			   <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+  <p style="text-transform: uppercase; font-size: 20px; text-align: center">	bill	${oneService.nameService}
+    <span class="section">Invoice Info</span></p>
+                    <form:form action="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/add"
+						modelAttribute="invoice" method="POST" class="form-horizontal form-label-left" >
+
+				<c:if test="${ktUpdateId}" >
+					  <form:input id="hidden" path="idinvoice" />
+					
+					</c:if>
+					 <!-- Done -->
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Contract Number <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <form:input id="name" path="contractNumber" class="form-control col-md-7 col-xs-12" data-validate-length-range="5,20"  name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text"/>
+                        </div>
+                      </div>
+                     
+                        <div class="item form-group" >
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Date <span class="required">*</span>
+                        </label>
+                        <div id="datetimepicker" class="col-md-6 col-sm-6 col-xs-12" >
+                        
+     
+                        
+                       
+
+                          <form:input path="date" id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12"/>
+                        
+        <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+
+                        </div>
+                      </div>
+                      
+                      <!-- Done -->
+                        <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Name Company<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <form:select path="nameCompany" cssClass="form-control"
+                             items="${oneService.companys}" itemValue="nameCpn" itemLabel="nameCpn" />
+                      </div>
+                      </div>
+                     
+                       <!-- Done -->
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Index Consumed<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <form:input path="indexConsumed" type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12"/>
+                        </div>
+                      </div>
+                   <div class="item form-group">
+                     <label style="color:red" class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Unit Services<span class="required"></span> </label>
+                          <label  class="control-label col-md-3 col-sm-3 col-xs-12" for="number">  ${oneService.unitServices}</label>
+                        </div>
+                     <div class="item form-group">
+                       <label style="color:red" class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Vat<span class="required"></span> </label>
+                        <label  class="control-label col-md-3 col-sm-3 col-xs-12" for="number">  ${oneService.vatServices}</label>
+                      </div>
+                      <form:input path="grandTotal" type="hidden"  value=" ${oneService.vatServices+oneService.unitServices}"/>
+ <%--                    <form:input path="customer_inv." type="hidden" value="${pageContext.request.userPrincipal.name}" /> --%>
+                     <form:input path="services_inv.idservice" type="hidden" value="${oneService.idservice}" />
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button type="submit" class="btn btn-primary">Cancel</button>
+                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+                    </form:form>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
-            <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
-          </form>
-															
-															
-															
-															
-														</div>
-														<div class="modal-footer">
-															<input type="submit" class="btn btn-default"
-																name="update">
-														</div>
-													</div>
-												</div>
+
+
+
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn btn-default" name="update">
+		</div>
+	</div>
+</div>
+
+			<!-- /sidebar form Invoice -->
 											</div>
 											<script>
 												$(document)
 														.ready(
 													
 																					function() {
-																						var butval = ${kt};
-																						$("#ctext").val(butval);
-																						$('.showSevrice').text(butval)
-																						  if(butval){
+																					
+																						  if(${kt}){
 																				    	      $("#myModal").modal('show');}
 																						
 																
@@ -273,30 +341,33 @@
 												cellspacing="0" width="100%">
 												<thead>
 													<tr>
-														<th>First name</th>
-														<th>Last name</th>
-														<th>Position</th>
-														<th>Office</th>
-														<th>Age</th>
-														<th>Start date</th>
-														<th>Salary</th>
-														<th>Extn.</th>
-														<th>E-mail</th>
+														<th>Name Service</th>
+														<th>Contract Number</th>
+														<th>Date</th>
+														<th>Name Company</th>
+														<th>Index Consumed</th>
+														<th>Grand Total</th>
+														<th>Update</th>
+														<th>Delete</th>
 													</tr>
 												</thead>
 												<tbody>
+													<c:forEach var="invoice" items="${invoicelist}">
+														
+														
 													<tr>
-														<td>Tiger</td>
-														<td>Nixon</td>
-														<td>System Architect</td>
-														<td>Edinburgh</td>
-														<td>61</td>
-														<td>2011/04/25</td>
-														<td>$320,800</td>
-														<td>5421</td>
-														<td>t.nixon@datatables.net</td>
+													<td>${invoice.services_inv.nameService }</td>
+														<td>${invoice.contractNumber}</td>
+														<td>${invoice.date}</td>
+															<td>${invoice.nameCompany}</td>
+														<td>${invoice.indexConsumed}</td>
+													
+													<td>${invoice.grandTotal}</td>
+														<td><a href="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/update/${invoice.idinvoice}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>Update</a></td>
+														<td><a href="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/delete/${invoice.idinvoice}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>Delete</a></td>
 													</tr>
-													<tr>
+													</c:forEach>
+												<!-- 	<tr>
 														<td>Garrett</td>
 														<td>Winters</td>
 														<td>Accountant</td>
@@ -306,7 +377,7 @@
 														<td>$170,750</td>
 														<td>8422</td>
 														<td>g.winters@datatables.net</td>
-													</tr>
+													</tr> -->
 
 
 												</tbody>
@@ -333,71 +404,68 @@
 				</div>
 			</div>
 
+<!-- datapicker -->
+  <script type="text/javascript"
+     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script> 
 
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+      $('#datetimepicker').datetimepicker({
+        format: 'dd/MM/yyyy',
+        language: 'pt-BR'
+      });
+    </script>
 			<!-- jQuery if needed -->
 			<script type="text/javascript"
 				src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 			<script type="text/javascript">
-			$("select").click(function() {
+			$("#sel1").click(function() {
 				  var open = $(this).data("isopen");
 				  if(open) {
-				    window.location.href ="invoices/formInvoices/" + $(this).val()
+				    window.location.href = $(this).val()
 				  }
 				  //set isopen to opposite so next time when use clicked select box
 				  //it wont trigger this event
 				  $(this).data("isopen", !open);
 				});
 			</script>
+ <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/resources/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="${pageContext.request.contextPath}/resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="${pageContext.request.contextPath}/resources/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="${pageContext.request.contextPath}/resources/vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="${pageContext.request.contextPath}/resources/vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/vendors/pdfmake/build/vfs_fonts.js"></script>
+<!-- validator -->
+    <script src="${pageContext.request.contextPath}/resources/vendors/validator/validator.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="${pageContext.request.contextPath}/resources/build/js/custom.min.js"></script>
 
-			<!-- jQuery -->
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/jquery/dist/jquery.min.js"></script>
-			<!-- Bootstrap -->
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-			<!-- FastClick -->
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/fastclick/lib/fastclick.js"></script>
-			<!-- NProgress -->
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/nprogress/nprogress.js"></script>
-			<!-- iCheck -->
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/iCheck/icheck.min.js"></script>
-			<!-- Datatables -->
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/jszip/dist/jszip.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/pdfmake/build/pdfmake.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/resources/vendors/pdfmake/build/vfs_fonts.js"></script>
-
-			<!-- Custom Theme Scripts -->
-			<script
-				src="${pageContext.request.contextPath}/resources/build/js/custom.min.js"></script>
-</body>
+  </body>
 </html>
+		

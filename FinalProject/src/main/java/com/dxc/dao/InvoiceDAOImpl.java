@@ -37,5 +37,18 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 		
 	}
 
+	@Override
+	public void delete(Long id) {
+			sessionFactory.getCurrentSession()
+							.createQuery("delete from Invoice where idinvoice = :id").setParameter("id", id)
+							.executeUpdate();
+		
+	}
+
+	@Override
+	public Invoice getOneInv(Long id) {
+		return (Invoice) sessionFactory.getCurrentSession().get(Invoice.class, id);
+	}
+
 
 }

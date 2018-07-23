@@ -40,6 +40,17 @@ public class InvoiceServicesImpl implements InvoiceService {
 		
 	}
 
+	@Override
+	public void delete(Long id) {
+		getU().delete(id);
+		
+	}
+
+	@Override
+	public Invoice getOneInv(Long id) {
+		return getU().getOneInv(id);
+	}
+
 	
 
 

@@ -9,6 +9,8 @@ public interface InvoiceDAO {
 
 	public void saveOrUpdate(Invoice invoice);
 	public ArrayList<Invoice> getAll();
-/*	public Service getOneCus(String id);*/
+	public Invoice getOneInv(Long id);
+	
+	public void delete(Long id) ;
 	
 }

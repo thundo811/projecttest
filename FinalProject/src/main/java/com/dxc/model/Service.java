@@ -8,6 +8,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,10 +34,10 @@ public class Service implements Serializable {
     
 	@Basic(optional = false)
 	@Column(name = "unit")
-	private BigDecimal unit;
+	private BigDecimal unitServices;
     
     
-    @OneToMany(mappedBy="services_cpn",cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="services_cpn",cascade=CascadeType.ALL)
     private Set<Company> companys;
     
     @OneToMany(mappedBy="services_inv",cascade=CascadeType.ALL)
@@ -44,16 +45,32 @@ public class Service implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "vat")
-    private BigDecimal vat;
+    private BigDecimal vatServices;
     
     
-    public BigDecimal getVat() {
-		return vat;
+
+	public Set<Invoice> getInvoice() {
+		return Invoice;
 	}
 
+	public void setInvoice(Set<Invoice> invoice) {
+		Invoice = invoice;
+	}
 
-	public void setVat(BigDecimal vat) {
-		this.vat = vat;
+	public BigDecimal getUnitServices() {
+		return unitServices;
+	}
+
+	public void setUnitServices(BigDecimal unitServices) {
+		this.unitServices = unitServices;
+	}
+
+	public BigDecimal getVatServices() {
+		return vatServices;
+	}
+
+	public void setVatServices(BigDecimal vatServices) {
+		this.vatServices = vatServices;
 	}
 
 	public Long getIdservice() {
