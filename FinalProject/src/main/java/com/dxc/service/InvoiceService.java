@@ -12,4 +12,5 @@ public interface InvoiceService {
 	public ArrayList<Invoice> getAll();
 	public Invoice getOneInv(Long id);
 	public void delete(Long id) ;
+	public ArrayList<Invoice> getAllReport(String frmDate,String enDate);
 }

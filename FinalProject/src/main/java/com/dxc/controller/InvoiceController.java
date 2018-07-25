@@ -104,5 +104,17 @@ public class InvoiceController {
 				return "DashBoard/tables_dynamic";
 			}
 			
+			@RequestMapping("/formInvoices/report")
+			public String reportInvoice(final Model model) throws ParseException {
+				Invoice invoice = invoiceService.getOneInv(Long.parseLong(id));
+				model.addAttribute("invoice", invoice);
+				model.addAttribute("ktUpdateId", true);
+				model.addAttribute("kt", true);
+				model.addAttribute("servicelist", serviceG9Service.getAll());
+				model.addAttribute("oneService", invoice.getServices_inv());
+				model.addAttribute("invoicelist", invoiceService.getAll());
+				return "DashBoard/tables_dynamic";
+			}
+			
 	
 }

@@ -50,5 +50,15 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 		return (Invoice) sessionFactory.getCurrentSession().get(Invoice.class, id);
 	}
 
+	@Override
+	public ArrayList<Invoice> getAllReport(String frmDate,String enDate) {
+		// TODO Auto-generated method stub
+		return (ArrayList<Invoice>) getSessionFactory().getCurrentSession()
+				.createQuery("FROM Invoice AS c WHERE c.date BETWEEN :stDate AND :edDate ")
+				.setParameter("stDate", frmDate)
+				.setParameter("edDate", enDate)
+				.list();
+	}
+
 
 }

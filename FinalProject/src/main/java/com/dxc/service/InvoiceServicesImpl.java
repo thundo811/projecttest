@@ -51,6 +51,12 @@ public class InvoiceServicesImpl implements InvoiceService {
 		return getU().getOneInv(id);
 	}
 
+	@Override
+	public ArrayList<Invoice> getAllReport(String frmDate, String enDate) {
+		// TODO Auto-generated method stub
+		return getU().getAllReport(frmDate, enDate);
+	}
+
 	
 
 
