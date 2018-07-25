@@ -35,8 +35,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
          String password = (String) authentication.getCredentials();
 
 	      User userChecking = (User) userService.getOneCus(username);
+	      
+	      
 	   
-          if (username == null && userChecking!=null || !username.equalsIgnoreCase("admin")) {
+          if (username == null && userChecking!=null || !username.equalsIgnoreCase(userChecking.getNameCustomer())) {
               throw new BadCredentialsException("Username not found.");
           }
    

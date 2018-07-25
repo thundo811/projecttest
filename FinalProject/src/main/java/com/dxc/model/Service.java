@@ -40,7 +40,7 @@ public class Service implements Serializable {
     @OneToMany(fetch = FetchType.EAGER,mappedBy="services_cpn",cascade=CascadeType.ALL)
     private Set<Company> companys;
     
-    @OneToMany(mappedBy="services_inv",cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="services_inv",cascade=CascadeType.ALL)
     private Set<Invoice> Invoice;
 
     @Basic(optional = false)

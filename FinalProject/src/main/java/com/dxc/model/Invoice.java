@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -23,6 +24,7 @@ public class Invoice implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "date")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private Date date;
 
 	@Length(max = 100)

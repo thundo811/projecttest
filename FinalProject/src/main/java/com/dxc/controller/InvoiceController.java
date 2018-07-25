@@ -59,8 +59,9 @@ public class InvoiceController {
 			@RequestMapping(value="/formInvoices/add", method = RequestMethod.POST)
 			public String dashboardAddInvoices(ModelMap modelMap, @ModelAttribute(value = "invoice") Invoice invoice,CustomAuthToken auth) throws ParseException {
 				//Sovled Date to DB
-				String newstring = new SimpleDateFormat("yyyy-MM-dd").format(invoice.getDate());
-				Date date = new SimpleDateFormat("yyyy-MM-dd").parse(newstring);
+				System.out.println(invoice.getDate()+"may vao day chua");
+				String newstring = new SimpleDateFormat("yyyy/MM/dd").format(invoice.getDate());
+				Date date = new SimpleDateFormat("yyyy/MM/dd").parse(newstring);
 				invoice.setDate(date);
 				/*System.out.println(newstring +"ngay ms");
 					System.out.println(invoice.getNameCompany()+"23"+invoice.getContractNumber());
@@ -70,10 +71,7 @@ public class InvoiceController {
 	*/
 				Double a = Double.valueOf(invoice.getGrandTotal()+"")*invoice.getIndexConsumed();
 				invoice.setGrandTotal(BigDecimal.valueOf(a));
-				   	invoice.setCustomer_inv(auth.getUserCus());
-				   	
-				  
-				   	
+				   	invoice.setCustomer_inv(auth.getUserCus());	   	
 					invoiceService.saveOrUpdate(invoice);
 				modelMap.addAttribute("kt", false);
 				modelMap.addAttribute("servicelist", serviceG9Service.getAll());
@@ -95,7 +93,7 @@ public class InvoiceController {
 			}
 			
 			@RequestMapping("/formInvoices/update/{id}")
-			public String updateInvoice(@PathVariable("id") String id,final Model model) {
+			public String updateInvoice(@PathVariable("id") String id,final Model model) throws ParseException {
 				Invoice invoice = invoiceService.getOneInv(Long.parseLong(id));
 				model.addAttribute("invoice", invoice);
 				model.addAttribute("ktUpdateId", true);
