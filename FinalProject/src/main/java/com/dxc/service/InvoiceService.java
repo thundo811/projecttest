@@ -1,5 +1,6 @@
 package com.dxc.service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import com.dxc.model.Invoice;
@@ -12,4 +13,5 @@ public interface InvoiceService {
 	public ArrayList<Invoice> getAll();
 	public Invoice getOneInv(Long id);
 	public void delete(Long id) ;
+	public ArrayList<Invoice> getAllReport(String frmDate,String enDate) throws ParseException;
 }

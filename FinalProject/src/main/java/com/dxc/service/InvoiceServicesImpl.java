@@ -1,5 +1,6 @@
 package com.dxc.service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,12 @@ public class InvoiceServicesImpl implements InvoiceService {
 	@Override
 	public Invoice getOneInv(Long id) {
 		return getU().getOneInv(id);
+	}
+
+	@Override
+	public ArrayList<Invoice> getAllReport(String frmDate, String enDate) throws ParseException {
+		// TODO Auto-generated method stub
+		return getU().getAllReport(frmDate, enDate);
 	}
 
 	

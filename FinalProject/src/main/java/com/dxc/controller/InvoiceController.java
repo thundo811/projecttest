@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dxc.model.Invoice;
 import com.dxc.model.Service;
@@ -102,6 +103,22 @@ public class InvoiceController {
 				model.addAttribute("oneService", invoice.getServices_inv());
 				model.addAttribute("invoicelist", invoiceService.getAll());
 				return "DashBoard/tables_dynamic";
+			}
+			
+			@RequestMapping("/report")
+			public String reportInvoice(final Model model) throws ParseException  {
+	
+/*				String newstartDate = new SimpleDateFormat("yyyy/MM/dd").format(startDate);
+				String newendDate = new SimpleDateFormat("yyyy/MM/dd").format(startDate);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				String frmDate = format.parse(newstartDate);
+				String enDate = format.parse(newendDate);
+				, @RequestParam("frmDate") String frmDate, @RequestParam("endDate") String endDate
+				*/
+
+				model.addAttribute("invoicelist", invoiceService.getAllReport("2018-06-20", "2018-08-25"));
+				System.out.println(invoiceService.getAllReport("2018-06-20", "2018-08-25"));
+				return "DashBoard/_invoice";
 			}
 			
 	
