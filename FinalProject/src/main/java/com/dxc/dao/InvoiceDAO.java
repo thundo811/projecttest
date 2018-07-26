@@ -11,7 +11,11 @@ public interface InvoiceDAO {
 	public void saveOrUpdate(Invoice invoice);
 	public ArrayList<Invoice> getAll();
 	public Invoice getOneInv(Long id);
+<<<<<<< HEAD
 	public ArrayList<Invoice> getAllReport(String frmDate,String enDate)  throws ParseException ;
+=======
+	public ArrayList<Invoice> getAllReport(String frmDate,String enDate);
+>>>>>>> 24c837b8f4c026401ccbeac75bf486278ba0d819
 	public void delete(Long id) ;
 	
 }
