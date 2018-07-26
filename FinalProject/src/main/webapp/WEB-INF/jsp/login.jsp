@@ -30,8 +30,10 @@
 				for="tab-1" class="tab">Sign In</label> <input id="tab-2"
 				type="radio" name="tab" class="sign-up"><label for="tab-2"
 				class="tab">Sign Up</label>
+				
 			<div class="login-form">
-				<div class="sign-in-htm">
+			<img src="${pageContext.request.contextPath}/resources/build/images/dxc.png" style="width:180px"  />
+				<div class="sign-in-htm" style="margin-top:50px">
 					<h2>${message}</h2>
 					<c:if test="${param.error != null}"> 
 							Error: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
@@ -66,7 +68,7 @@
 					</form>
 
 				</div>
-				<div class="sign-up-htm">
+				<div class="sign-up-htm" style="margin-top:50px">
 					<form:form action="${pageContext.request.contextPath}/signup"
 						modelAttribute="user" method="POST">
 						<div class="group">

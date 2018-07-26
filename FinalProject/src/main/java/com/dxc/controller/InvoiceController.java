@@ -105,9 +105,9 @@ public class InvoiceController {
 				return "DashBoard/tables_dynamic";
 			}
 			
-<<<<<<< HEAD
+
 			@RequestMapping("/report")
-			public String reportInvoice(final Model model) throws ParseException  {
+			public String reportInvoice(final Model model,CustomAuthToken auth) throws ParseException  {
 	
 /*				String newstartDate = new SimpleDateFormat("yyyy/MM/dd").format(startDate);
 				String newendDate = new SimpleDateFormat("yyyy/MM/dd").format(startDate);
@@ -116,22 +116,29 @@ public class InvoiceController {
 				String enDate = format.parse(newendDate);
 				, @RequestParam("frmDate") String frmDate, @RequestParam("endDate") String endDate
 				*/
-
-				model.addAttribute("invoicelist", invoiceService.getAllReport("2018-06-20", "2018-08-25"));
-				System.out.println(invoiceService.getAllReport("2018-06-20", "2018-08-25"));
+				model.addAttribute("invoiceCustomer", auth.getUserCus());
+				model.addAttribute("invoicelist", invoiceService.getAllReport("2016-06-20", "2020-08-25"));
 				return "DashBoard/_invoice";
-=======
-			@RequestMapping("/formInvoices/report")
-			public String reportInvoice(final Model model) throws ParseException {
-				Invoice invoice = invoiceService.getOneInv(Long.parseLong(id));
-				model.addAttribute("invoice", invoice);
-				model.addAttribute("ktUpdateId", true);
-				model.addAttribute("kt", true);
-				model.addAttribute("servicelist", serviceG9Service.getAll());
-				model.addAttribute("oneService", invoice.getServices_inv());
-				model.addAttribute("invoicelist", invoiceService.getAll());
-				return "DashBoard/tables_dynamic";
->>>>>>> 24c837b8f4c026401ccbeac75bf486278ba0d819
+
+			}
+			
+			
+			@RequestMapping(value="/reportbetweenDays", method = RequestMethod.POST)
+			public String reportInvoiceBetweenDays(final Model model,CustomAuthToken auth, @RequestParam("frmDate") String frmDate, @RequestParam("endDate") String endDate) throws ParseException  {
+	
+/*				String newstartDate = new SimpleDateFormat("yyyy/MM/dd").format(startDate);
+				String newendDate = new SimpleDateFormat("yyyy/MM/dd").format(startDate);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				String frmDate = format.parse(newstartDate);
+				String enDate = format.parse(newendDate);
+				
+				*/
+				
+				System.out.println(frmDate +"test thu");
+				model.addAttribute("invoiceCustomer", auth.getUserCus());
+				model.addAttribute("invoicelist", invoiceService.getAllReport(frmDate, endDate));
+				return "DashBoard/_invoice";
+
 			}
 			
 	

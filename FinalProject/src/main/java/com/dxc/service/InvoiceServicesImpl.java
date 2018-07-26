@@ -53,11 +53,9 @@ public class InvoiceServicesImpl implements InvoiceService {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public ArrayList<Invoice> getAllReport(String frmDate, String enDate) throws ParseException {
-=======
-	public ArrayList<Invoice> getAllReport(String frmDate, String enDate) {
->>>>>>> 24c837b8f4c026401ccbeac75bf486278ba0d819
+
 		// TODO Auto-generated method stub
 		return getU().getAllReport(frmDate, enDate);
 	}

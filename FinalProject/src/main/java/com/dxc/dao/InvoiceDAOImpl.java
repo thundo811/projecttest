@@ -54,29 +54,20 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public ArrayList<Invoice> getAllReport(String frmDate,String enDate) throws ParseException {
-		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse("2018-07-20");
+		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(frmDate);
 		
-		Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse("2018-08-25");
+		Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(enDate);
 		
 		// TODO Auto-generated method stub
 		return (ArrayList<Invoice>) getSessionFactory().getCurrentSession()
-				.createQuery("FROM Invoice AS c WHERE c.date BETWEEN :stDate AND :edDate ")
+				.createQuery("FROM Invoice AS c WHERE  c.date BETWEEN :stDate AND :edDate ")
 				.setParameter("stDate", date1)
 				.setParameter("edDate", date2)
 				.list();
 	} 
-=======
-	public ArrayList<Invoice> getAllReport(String frmDate,String enDate) {
-		// TODO Auto-generated method stub
-		return (ArrayList<Invoice>) getSessionFactory().getCurrentSession()
-				.createQuery("FROM Invoice AS c WHERE c.date BETWEEN :stDate AND :edDate ")
-				.setParameter("stDate", frmDate)
-				.setParameter("edDate", enDate)
-				.list();
-	}
->>>>>>> 24c837b8f4c026401ccbeac75bf486278ba0d819
+
 
 
 }
