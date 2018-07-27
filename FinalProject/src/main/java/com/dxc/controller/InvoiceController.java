@@ -1,5 +1,6 @@
 package com.dxc.controller;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dxc.model.Invoice;
 import com.dxc.model.Service;
@@ -33,6 +35,7 @@ public class InvoiceController {
 	@Autowired
 	InvoiceService   invoiceService;
 
+	private String saveDirectory = null; 
 
 	//redict to add Voices 
 	@RequestMapping("")
@@ -58,12 +61,41 @@ public class InvoiceController {
 			}
 			
 			@RequestMapping(value="/formInvoices/add", method = RequestMethod.POST)
-			public String dashboardAddInvoices(ModelMap modelMap, @ModelAttribute(value = "invoice") Invoice invoice,CustomAuthToken auth) throws ParseException {
+			public String dashboardAddInvoices(ModelMap modelMap, @ModelAttribute(value = "invoice") Invoice invoice, Model model,CustomAuthToken auth,HttpServletRequest request) throws ParseException {
 				//Sovled Date to DB
+				
+				  String fileName2 = null;
+				  String fileName = null;
+					fileName2 = "E:\\github\\projecttest\\FinalProject\\src\\main\\webapp\\resources\\images";
+
+
+
+				    System.out.println(fileName2);
+					try {
+						
+						MultipartFile multipartFile = invoice.getMultipartFile();
+						System.out.println(multipartFile.getOriginalFilename()+"    ");
+						if( multipartFile.getOriginalFilename().equals("")) {
+						
+							fileName = "defaul";
+						}else {
+							fileName = multipartFile.getOriginalFilename();
+						File file = new File(fileName2, invoice.getContractNumber()+".jpg");
+						
+						multipartFile.transferTo(file);
+						}
+					
+					} catch (Exception e) {
+						e.printStackTrace();
+						model.addAttribute("message", "upload failed");
+					}
+				
+				
 				System.out.println(invoice.getDate()+"may vao day chua");
 				String newstring = new SimpleDateFormat("yyyy/MM/dd").format(invoice.getDate());
 				Date date = new SimpleDateFormat("yyyy/MM/dd").parse(newstring);
 				invoice.setDate(date);
+				invoice.setImageInvoice(invoice.getContractNumber()+".jpg");
 				/*System.out.println(newstring +"ngay ms");
 					System.out.println(invoice.getNameCompany()+"23"+invoice.getContractNumber());
 	System.out.println(auth.getUserCus().getId());
@@ -140,6 +172,7 @@ public class InvoiceController {
 				return "DashBoard/_invoice";
 
 			}
+			
 			
 	
 }

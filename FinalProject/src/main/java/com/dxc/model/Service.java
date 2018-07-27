@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 
 
 @Entity
@@ -37,10 +39,14 @@ public class Service implements Serializable {
 	private BigDecimal unitServices;
     
     
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="services_cpn",cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="services_cpn")
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+        org.hibernate.annotations.CascadeType.DELETE})
     private Set<Company> companys;
     
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="services_inv",cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="services_inv")
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+        org.hibernate.annotations.CascadeType.DELETE})
     private Set<Invoice> Invoice;
 
     @Basic(optional = false)

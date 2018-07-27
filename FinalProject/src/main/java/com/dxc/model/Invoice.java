@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -30,6 +31,32 @@ public class Invoice implements Serializable {
 	@Length(max = 100)
 	@Column(name = "contract_number")
 	private String contractNumber;
+
+	@Length(max = 100)
+	@Column(name = "image_invoice")
+	private String imageInvoice;
+
+	@Transient
+	private MultipartFile multipartFile;
+	
+	public String getImageInvoice() {
+		return imageInvoice;
+	}
+
+
+	public void setImageInvoice(String imageInvoice) {
+		this.imageInvoice = imageInvoice;
+	}
+
+
+	public MultipartFile getMultipartFile() {
+		return multipartFile;
+	}
+
+
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
+	}
 
 
 	// @Max(value=?) @Min(value=?)//if you know range of your decimal fields

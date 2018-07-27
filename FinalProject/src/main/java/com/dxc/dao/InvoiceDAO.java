@@ -14,5 +14,5 @@ public interface InvoiceDAO {
 
 	public ArrayList<Invoice> getAllReport(String frmDate,String enDate)  throws ParseException ;
 	public void delete(Long id) ;
-	
+
 }

@@ -26,7 +26,7 @@ public class MainController {
 	
 	
 	// Go page Login
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping({"/", "/login"})
 	public String createManual(ModelMap m) {
 		User user = new User();
 		m.addAttribute("user", user);
@@ -52,7 +52,7 @@ public class MainController {
 	
 	@RequestMapping("/group9/admin")
 	public String user3() {
-		return "admin3";
+		return "index";
 	}
 	
 	//Logout Page
@@ -64,12 +64,7 @@ public class MainController {
 		return "login";
 	}
 		
-		//Go to Dashboard
-		@RequestMapping("/dashboard")
-		public String dashboard() {
-		/*	CustomAuthToken auth to use System.out.println(auth.getUserCus().getNameCustomer());*/
-			return "DashBoard/index";
-		}
+
 		
 		
 		

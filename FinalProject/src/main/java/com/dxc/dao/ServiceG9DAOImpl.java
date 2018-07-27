@@ -40,6 +40,25 @@ public class ServiceG9DAOImpl implements ServiceG9DAO {
 				.uniqueResult();
 	}
 
+	@Override
+	public void delete(Long id) {
+		sessionFactory.getCurrentSession()
+		.createQuery("delete from Service where idservice = :id").setParameter("id", id)
+		.executeUpdate();
+		
+	}
+
+	@Override
+	public void saveOrUpdate(Service service) {
+		getSessionFactory().getCurrentSession().saveOrUpdate(service);
+		
+	}
+
+	@Override
+	public Service getOneSer(Long id) {
+		return (Service) sessionFactory.getCurrentSession().get(Service.class, id);
+	}
+
 /*	@Override
 	public void saveOrUpdate(Invoice invoice) {
 		getSessionFactory().getCurrentSession().saveOrUpdate(invoice);

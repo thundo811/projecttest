@@ -41,6 +41,23 @@ public class ServiceG9ServicesImpl implements ServiceG9Service {
 		return 	getU().getOneCus(name);
 	}
 
+	@Override
+	public void delete(Long id) {
+		getU().delete(id);
+		
+	}
+
+	@Override
+	public void saveOrUpdate(com.dxc.model.Service service) {
+		getU().saveOrUpdate(service);
+		
+	}
+
+	@Override
+	public com.dxc.model.Service getOneSev(Long id) {
+		return getU().getOneSer(id);
+	}
+
 /*	@Override
 	public void saveOrUpdate(Invoice invoice) {
 		getU().saveOrUpdate(invoice);

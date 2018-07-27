@@ -95,7 +95,7 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="x_panel">
 									<div class="x_title">
-										<h2>TBALE INVOICES</h2>
+										<h2>TBALE SERVICES</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
 													class="fa fa-chevron-up"></i></a></li>
@@ -120,7 +120,7 @@
 									<div class="col-md-12 col-sm-12 col-xs-12">
 										<div class="x_panel">
 											<div class="x_title">
-												<h2>Invoices Of Customer :
+												<h2>Services Of Customer :
 													${pageContext.request.userPrincipal.name}</h2>
 												<ul class="nav navbar-right panel_toolbox">
 													<li><a class="collapse-link"><i
@@ -140,156 +140,72 @@
 											</div>
 											<div class="x_content">
 												<h2>Part Select</h2>
-												<div class="form-group">
-													<label for="sel1">Select list (select one):</label> <select
-														class="form-control" id="sel1">
-														<c:forEach var="m" items="${servicelist}">
-															<option
-																value="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/${m.nameService}">
-																${m.nameService}</option>
-														</c:forEach>
-	
-													</select> <br>
-	
-												</div>
-	
-	
-												<!-- see the button attributes changes  -->
-												<div id="myModal" class="modal fade" role="dialog">
-													<!-- sidebar form Invoice -->
-													<div class="modal-dialog">
-														<!-- Modal content-->
-														<div class="modal-content" style="width: 150%">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal">&times;</button>
-															</div>
-	
-	
-	
-	
-															<div class="modal-body" style="padding: 40px 50px;">
-																<div class="row">
-																	<div class="col-md-12 col-sm-12 col-xs-12">
+											
+	<div class="col-md-12 col-sm-12 col-xs-12">
 																		<div class="x_panel">
 																			<div class="x_content">
-																				<p
-																					style="text-transform: uppercase; font-size: 20px; text-align: center">
-																					bill ${oneService.nameService} <span class="section">Invoice
-																						Info</span>
-																				</p>
+																			
 																				<form:form
-																					action="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/add"
-																					modelAttribute="invoice" enctype="multipart/form-data" method="POST"
+																					action="${pageContext.request.contextPath}/group9/admin/service/add"
+																					modelAttribute="service" method="POST"
 																					class="form-horizontal form-label-left">
 	
 
-	<div class="item form-group">
-																						<label
-																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="occupation">Choose Image <span
-																							class="required">*</span>
-																						</label>
-																						<div 
-																							class="col-md-6 col-sm-6 col-xs-12">
-File: <input type="file" name="multipartFile" /> <br />
-																				
-	
-																						</div>
-																					</div>
 																					<c:if test="${ktUpdateId}">
-																						<form:hidden id="hidden" path="idinvoice" />
+																						<form:hidden id="hidden" path="idservice" />
 	
 																					</c:if>
 																					<!-- Done -->
 
-	                      <div class="item form-group">
+	
+																				
+	
+																					<!-- Done -->
+																					<div class="item form-group">
 																						<label
 																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="name">Contract Number <span
+																							for="number">Name Service<span
 																							class="required">*</span>
 																						</label>
 																						<div class="col-md-6 col-sm-6 col-xs-12">
-																							<form:input id="name" path="contractNumber"
-																								class="form-control col-md-7 col-xs-12"
-																								data-validate-length-range="5,20" name="name"
-																								placeholder="both name(s) e.g Jon Doe"
+																							<form:input id="name" path="nameService"						
+																								placeholder="Name Services"
 																								required="required" type="text" />
 																						</div>
 																					</div>
 	
+	
+																						<!-- Done -->
 																					<div class="item form-group">
 																						<label
 																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="occupation">Date <span
-																							class="required">*</span>
-																						</label>
-																						<div id="datetimepicker"
-																							class="col-md-6 col-sm-6 col-xs-12">
-	
-																							<form:input path="date" id="occupation"
-																								type="text" name="occupation"
-																								data-validate-length-range="5,20"
-																								class="optional form-control col-md-7 col-xs-12" />
-	
-																							<span class="add-on"> <i
-																								data-time-icon="icon-time"
-																								data-date-icon="icon-calendar"></i>
-																							</span>
-	
-																						</div>
-																					</div>
-	
-																					<!-- Done -->
-																					<div class="item form-group">
-																						<label
-																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="number">Name Company<span
+																							for="number">Unit Price<span
 																							class="required">*</span>
 																						</label>
 																						<div class="col-md-6 col-sm-6 col-xs-12">
-																							<form:select path="nameCompany"
-																								cssClass="form-control"
-																								items="${oneService.companys}"
-																								itemValue="nameCpn" itemLabel="nameCpn" />
-																						</div>
-																					</div>
-	
-																					<!-- Done -->
-																					<div class="item form-group">
-																						<label
-																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="number">Index Consumed<span
-																							class="required">*</span>
-																						</label>
-																						<div class="col-md-6 col-sm-6 col-xs-12">
-																							<form:input path="indexConsumed" type="number"
+																							<form:input path="unitServices" type="number"
 																								id="number" name="number" required="required"
-																								data-validate-minmax="10,100"
 																								class="form-control col-md-7 col-xs-12" />
 																						</div>
 																					</div>
+																				
+																				
+																					<!-- Done -->
 																					<div class="item form-group">
-																						<label style="color: red"
+																						<label
 																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="number">Unit Services<span
-																							class="required"></span>
-																						</label> <label
-																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="number"> ${oneService.unitServices}</label>
+																							for="number">Vat Services<span
+																							class="required">*</span>
+																						</label>
+																						<div class="col-md-6 col-sm-6 col-xs-12">
+																							<form:input path="vatServices" type="number"
+																								id="number" name="number" required="required"
+																								class="form-control col-md-7 col-xs-12" />
+																						</div>
 																					</div>
-																					<div class="item form-group">
-																						<label style="color: red"
-																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="number">Vat<span class="required"></span>
-																						</label> <label
-																							class="control-label col-md-3 col-sm-3 col-xs-12"
-																							for="number"> ${oneService.vatServices}</label>
-																					</div>
-																					<form:input path="grandTotal" type="hidden"
-																						value=" ${oneService.vatServices+oneService.unitServices}" />
-																					<%--                    <form:input path="customer_inv." type="hidden" value="${pageContext.request.userPrincipal.name}" /> --%>
-																					<form:input path="services_inv.idservice"
-																						type="hidden" value="${oneService.idservice}" />
+																					
+																				
+																					
 																					<div class="ln_solid"></div>
 																					<div class="form-group" align="right">
 																						<div class="col-md-6 col-md-offset-3">
@@ -301,25 +217,9 @@ File: <input type="file" name="multipartFile" /> <br />
 																			</div>
 																		</div>
 																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
 	
-													<!-- /sidebar form Invoice -->
-												</div>
-												<script>
-													$(document)
-															.ready(
-														
-																						function() {
-																						
-																							  if(${kt}){
-																					    	      $("#myModal").modal('show');}
-																							
-																	
-																	});
-												</script>
+											
+												
 											</div>
 										</div>
 									</div>
@@ -332,33 +232,27 @@ File: <input type="file" name="multipartFile" /> <br />
 													cellspacing="0" width="100%">
 													<thead>
 														<tr>
-															<th>Image Bill</th>
-															<th>Service</th>
-															<th>Number</th>
-															<th>Date</th>
-															<th>Company</th>
-															<th>Consumed</th>
-															<th>Grand Total</th>
+															<th>Id Service</th>
+															<th>Name Service</th>
+															<th>Unit Price</th>
+															<th>Vat</th>
 															<th>Update</th>
 															<th>Delete</th>
 													
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="invoice" items="${invoicelist}">
+														<c:forEach var="service" items="${servicelist}">
 															<tr>
-															<td>	<img style="width:40px;height:30px" src="${pageContext.request.contextPath}/resources/images/${invoice.imageInvoice}"   /></td>
-																<td>${invoice.services_inv.nameService }</td>
-																<td>${invoice.contractNumber}</td>
-																<td>${invoice.date}</td>
-																<td>${invoice.nameCompany}</td>
-																<td>${invoice.indexConsumed}</td>
-																<td>${invoice.grandTotal}</td>
+																<td>${service.idservice }</td>
+																<td>${service.nameService}</td>
+																<td>${service.unitServices}</td>
+																<td>${service.vatServices}</td>
 																<td><a
-																	href="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/update/${invoice.idinvoice}"
+																	href="${pageContext.request.contextPath}/group9/admin/service/update/${service.idservice}"
 																	class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>Update</a></td>
 																<td><a
-																	href="${pageContext.request.contextPath}/dashboard/invoices/formInvoices/delete/${invoice.idinvoice}"
+																	href="${pageContext.request.contextPath}/group9/admin/service/delete/${service.idservice}"
 																	class="btn btn-danger btn-xs"><i
 																		class="fa fa-trash-o"></i>Delete</a></td>			
 															</tr>

@@ -12,13 +12,13 @@ import com.dxc.security.CustomAuthToken;
 import com.dxc.service.UserService;
 
 @Controller
-@RequestMapping("/dashboard/")
+@RequestMapping("/dashboard")
 public class ProfileCustomeController {
        
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping("/showProfile")
+	@RequestMapping({"","/showProfile"})
 	public String showProfile(ModelMap modelMap,CustomAuthToken auth) {
 		
 		User cus = auth.getUserCus();
